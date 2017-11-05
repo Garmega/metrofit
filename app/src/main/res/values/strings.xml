@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">metrofit_sample</string>
+
+    <string name="btn_lbl_api_test">API Test</string>
+</resources>
