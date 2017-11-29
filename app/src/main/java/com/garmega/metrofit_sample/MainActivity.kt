@@ -1,9 +1,9 @@
 package com.garmega.metrofit_sample
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import com.garmega.metrofit_sample.DataLayer.DataManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +19,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun apiButtonPress() {
-        Log.d(TAG, "btnAPITEST pressed!")
     }
 }
