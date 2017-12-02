@@ -1,7 +1,7 @@
 package com.garmega.metrofit_sample
 
-import com.garmega.metrofit_sample.complex.RetrofitUserService
-import com.garmega.metrofit_sample.complex.UserService
+import com.garmega.metrofit_sample.complex.RetrofitUserManagementService
+import com.garmega.metrofit_sample.complex.UserManagementService
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -14,11 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object APICaller {
 
-    val USER_SERVICE: UserService
+    val USER_MANAGEMENT_SERVICE: UserManagementService
 
     init {
-        USER_SERVICE = UserService(buildNewRetrofit(RetrofitUserService.USER_SERVICES_URL!!)
-                .create(RetrofitUserService::class.java))
+        USER_MANAGEMENT_SERVICE = UserManagementService(buildNewRetrofit(RetrofitUserManagementService.USER_MANAGEMENT_SERVICES_URL!!)
+                .create(RetrofitUserManagementService::class.java))
     }
 
     // When attached to the initialization with Retrofit

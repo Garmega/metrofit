@@ -9,17 +9,17 @@ import com.garmega.metrofit.UINotifier
 import com.garmega.metrofit_sample.APICaller
 
 /**
- * Created by Nick on 11/7/17.
+ * Created by Nick on 12/2/17.
  */
 
 // Singleton
-object UserManager {
+object TeamManager {
 
     init {
 
     }
 
-    fun getUser(context: Context, notifier: UINotifier) {
+    fun getTeam(context: Context, notifier: UINotifier) {
         val filter = IntentFilter("TEST")
         val getUserReceiver = object : APIReceiver(notifier) {
 
@@ -37,6 +37,6 @@ object UserManager {
         }
 
         LocalBroadcastManager.getInstance(context).registerReceiver(getUserReceiver, filter)
-        APICaller.USER_MANAGEMENT_SERVICE.getUser(600, "TEST")
+        APICaller.USER_MANAGEMENT_SERVICE.getTeam(600, "TEST")
     }
 }
