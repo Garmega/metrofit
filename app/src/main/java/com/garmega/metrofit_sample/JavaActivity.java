@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.garmega.metrofit.UINotifier;
+
 public class JavaActivity extends AppCompatActivity {
     private final String TAG = "MAIN_ACTIVITY";
 
@@ -29,5 +31,29 @@ public class JavaActivity extends AppCompatActivity {
 
     private void apiButtonPress() {
         Log.d(TAG, "btnAPITEST pressed!");
+
+        UINotifier notifier = new UINotifier() {
+            @Override
+            public void onIncoming() {
+                Log.i(TAG, "UINotifier - onIncoming");
+            }
+
+            @Override
+            public void onSuccessful() {
+                Log.i(TAG, "UINotifier - onSuccessful");
+            }
+
+            @Override
+            public void onUnsuccessful() {
+                Log.i(TAG, "UINotifier - onUnsuccessful");
+            }
+
+            @Override
+            public void onPowerDown() {
+                Log.i(TAG, "UINotifier - onPowerDown");
+            }
+        };
+
+        WeatherManager.INSTANCE.getWeather(this, notifier);
     }
 }

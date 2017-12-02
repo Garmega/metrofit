@@ -32,7 +32,7 @@ TODO: Comment more stuff
  *
  * @param <T> Where T is any object type.
 </T> */
-class ResponseCallback<T>(broadcastTag: String, private val debugTag: String) : Callback<T> {
+abstract class ResponseCallback<T>(broadcastTag: String, private val debugTag: String) : Callback<T> {
     private val broadcastIntent: Intent
     private val result = APIResult()
     private val freight = HashMap<String, Any>()
@@ -78,7 +78,6 @@ class ResponseCallback<T>(broadcastTag: String, private val debugTag: String) : 
         // Response was unsuccessful
         } else {
             result.status = APIResult.Status.UNSUCCESSFUL
-
             result.message = response.message()
 
             val unSuccessfulLog = debugTag + " | onUnsuccessful - Code: " +
@@ -129,9 +128,9 @@ class ResponseCallback<T>(broadcastTag: String, private val debugTag: String) : 
     //   Handle Functions
     //------------------------------------------------------------------
 
-    fun performIntake(body: T?, outboundFreight: Map<String, Any>) {}
+    open fun performIntake(body: T?, outboundFreight: Map<String, Any>) {}
 
-    fun onUnsuccessfulResponse(call: Call<T>, response: Response<T>) {}
+    open fun onUnsuccessfulResponse(call: Call<T>, response: Response<T>) {}
 
-    fun onCallFailure(call: Call<T>, t: Throwable) {}
+    open fun onCallFailure(call: Call<T>, t: Throwable) {}
 }

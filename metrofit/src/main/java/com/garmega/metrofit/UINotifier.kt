@@ -4,16 +4,16 @@ package com.garmega.metrofit
  * Created by Nick on 11/7/17.
  */
 
-class UINotifier {
-    fun onIncoming() {}
+abstract class UINotifier {
+    open fun onIncoming() {}
 
-    fun onSuccessful() {}
+    open fun onSuccessful() {}
 
-    fun onUnsuccessful() {}
+    open fun onUnsuccessful() {}
 
-    fun onIntakeFailure() {}
+    open fun onIntakeFailure() {}
 
-    fun onFailedToReachServer() {}
+    open fun onFailedToReachServer() {}
 
-    fun onPowerDown() {}
+    open fun onPowerDown() {}
 }
