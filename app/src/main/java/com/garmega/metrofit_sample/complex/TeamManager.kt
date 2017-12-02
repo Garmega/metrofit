@@ -19,7 +19,7 @@ object TeamManager {
 
     }
 
-    fun getTeam(context: Context, notifier: UINotifier) {
+    fun getTeam(teamId: String, context: Context, notifier: UINotifier) {
         val filter = IntentFilter("TEST")
         val getUserReceiver = object : APIReceiver(notifier) {
 
@@ -37,6 +37,6 @@ object TeamManager {
         }
 
         LocalBroadcastManager.getInstance(context).registerReceiver(getUserReceiver, filter)
-        APICaller.USER_MANAGEMENT_SERVICE.getTeam(600, "TEST")
+        APICaller.USER_MANAGEMENT_SERVICE.getTeam(teamId, "TEST")
     }
 }

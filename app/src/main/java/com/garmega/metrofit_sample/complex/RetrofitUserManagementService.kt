@@ -16,8 +16,8 @@ interface RetrofitUserManagementService {
     }
 
     @GET("user/{userId}")
-    fun getUser(@Path("userId") userId: Int): Call<UserResponse>
+    fun getUser(@Path("userId") userId: String): Call<UserResponse>
 
     @GET("team/{teamId}")
-    fun getTeam(@Path("teamID") teamId: Int): Call<TeamResponse>
+    fun getTeam(@Path("teamID") teamId: String): Call<TeamResponse>
 }

@@ -2,6 +2,8 @@ package com.garmega.metrofit_sample
 
 import com.garmega.metrofit_sample.complex.RetrofitUserManagementService
 import com.garmega.metrofit_sample.complex.UserManagementService
+import com.garmega.metrofit_sample.simple.RetrofitWeatherService
+import com.garmega.metrofit_sample.simple.WeatherService
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -16,9 +18,14 @@ object APICaller {
 
     val USER_MANAGEMENT_SERVICE: UserManagementService
 
+    val WEATHER_SERVICE: WeatherService
+
     init {
         USER_MANAGEMENT_SERVICE = UserManagementService(buildNewRetrofit(RetrofitUserManagementService.USER_MANAGEMENT_SERVICES_URL!!)
                 .create(RetrofitUserManagementService::class.java))
+
+        WEATHER_SERVICE = WeatherService(buildNewRetrofit(RetrofitWeatherService.WEATHER_SERVICES_URL!!)
+                .create(RetrofitWeatherService::class.java))
     }
 
     // When attached to the initialization with Retrofit
