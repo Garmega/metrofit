@@ -29,6 +29,9 @@ dependencies {
     // Retrofit: http://square.github.io/retrofit/
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
 
+
+    //replace with moshi?
+    //https://android.jlelse.eu/keddit-part-6-api-retrofit-kotlin-d309074af0
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 

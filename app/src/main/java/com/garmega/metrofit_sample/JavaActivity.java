@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.garmega.metrofit.UINotifier;
+import com.garmega.metrofit_sample.complex.UserManager;
 
 public class JavaActivity extends AppCompatActivity {
     private final String TAG = "MAIN_ACTIVITY";
@@ -54,6 +55,6 @@ public class JavaActivity extends AppCompatActivity {
             }
         };
 
-        WeatherManager.INSTANCE.getWeather(this, notifier);
+        UserManager.INSTANCE.getUser(this, notifier);
     }
 }
