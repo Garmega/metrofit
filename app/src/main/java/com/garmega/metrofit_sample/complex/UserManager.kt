@@ -19,7 +19,7 @@ object UserManager {
 
     }
 
-    fun getUser(context: Context, notifier: UINotifier) {
+    fun getUser(userId: String, context: Context, notifier: UINotifier) {
         val filter = IntentFilter("TEST")
         val getUserReceiver = object : APIReceiver(notifier) {
 
@@ -37,6 +37,6 @@ object UserManager {
         }
 
         LocalBroadcastManager.getInstance(context).registerReceiver(getUserReceiver, filter)
-        APICaller.USER_MANAGEMENT_SERVICE.getUser(600, "TEST")
+        APICaller.USER_MANAGEMENT_SERVICE.getUser(userId, "TEST")
     }
 }

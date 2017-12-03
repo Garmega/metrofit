@@ -14,7 +14,7 @@ import com.garmega.metrofit_sample.complex.RetrofitUserManagementService
  * Created by Nick on 12/2/17.
  */
 
-class WeatherService(private val retrofitWeatherService: RetrofitWeatherService) {
+class WeatherServiceManager(private val retrofitWeatherService: RetrofitWeatherService) {
 
     /*
     This method handles model after conversion happens. This is where you should modify your local model
