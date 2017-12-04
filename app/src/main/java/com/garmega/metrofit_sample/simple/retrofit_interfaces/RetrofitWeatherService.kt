@@ -1,6 +1,7 @@
-package com.garmega.metrofit_sample.simple
+package com.garmega.metrofit_sample.simple.retrofit_interfaces
 
 import com.garmega.metrofit_sample.RetrofitInitialization
+import com.garmega.metrofit_sample.simple.response_models.WeatherDataResponse
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import retrofit2.Call
@@ -34,4 +35,3 @@ interface RetrofitWeatherService {
     @GET("user/{cityId}")
     fun getWeather(@Path("cityId") cityId: String): Call<WeatherDataResponse>
 }
-

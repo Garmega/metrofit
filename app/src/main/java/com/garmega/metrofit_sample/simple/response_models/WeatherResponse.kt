@@ -1,10 +1,10 @@
-package com.garmega.metrofit_sample.simple
+package com.garmega.metrofit_sample.simple.response_models
 
 /**
  * Created by Nick on 12/1/17.
  */
 
-class UserResponse(val data: WeatherDataResponse)
+class WeatherResponse(val data: WeatherDataResponse)
 
 class WeatherDataResponse(
         val main: WeatherMainData

@@ -1,7 +1,9 @@
 package com.garmega.metrofit_sample.complex
 
 import com.garmega.metrofit.ResponseCallback
-import com.garmega.metrofit_sample.simple.UserResponse
+import com.garmega.metrofit_sample.complex.response_models.TeamResponse
+import com.garmega.metrofit_sample.complex.response_models.UserResponse
+import com.garmega.metrofit_sample.complex.retrofit_interfaces.RetrofitUserManagementService
 
 /**
  * Created by Nick on 11/29/17.

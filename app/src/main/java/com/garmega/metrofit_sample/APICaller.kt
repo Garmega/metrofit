@@ -1,11 +1,9 @@
 package com.garmega.metrofit_sample
 
-import com.garmega.metrofit_sample.complex.RetrofitUserManagementService
+import com.garmega.metrofit_sample.complex.retrofit_interfaces.RetrofitUserManagementService
 import com.garmega.metrofit_sample.complex.UserManagementService
-import com.garmega.metrofit_sample.simple.RetrofitWeatherService
+import com.garmega.metrofit_sample.simple.retrofit_interfaces.RetrofitWeatherService
 import com.garmega.metrofit_sample.simple.WeatherServiceManager
-import okhttp3.HttpUrl
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -7,8 +7,8 @@ import com.garmega.metrofit.APIReceiver
 import com.garmega.metrofit.APIResult
 import com.garmega.metrofit.ResponseCallback
 import com.garmega.metrofit.UINotifier
-import com.garmega.metrofit_sample.APICaller
-import com.garmega.metrofit_sample.complex.RetrofitUserManagementService
+import com.garmega.metrofit_sample.simple.response_models.WeatherDataResponse
+import com.garmega.metrofit_sample.simple.retrofit_interfaces.RetrofitWeatherService
 
 /**
  * Created by Nick on 12/2/17.

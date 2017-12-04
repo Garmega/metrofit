@@ -1,7 +1,8 @@
-package com.garmega.metrofit_sample.complex
+package com.garmega.metrofit_sample.complex.retrofit_interfaces
 
 import com.garmega.metrofit_sample.RetrofitInitialization
-import com.garmega.metrofit_sample.simple.UserResponse
+import com.garmega.metrofit_sample.complex.response_models.TeamResponse
+import com.garmega.metrofit_sample.simple.response_models.UserResponse
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import retrofit2.Call

@@ -38,5 +38,6 @@ object UserManager {
 
         LocalBroadcastManager.getInstance(context).registerReceiver(getUserReceiver, filter)
         APICaller.USER_MANAGEMENT_SERVICE.getUser(userId, "TEST")
+
     }
 }
