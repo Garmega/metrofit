@@ -29,5 +29,7 @@ class UserManagementService(private val retrofitUserManagementService: RetrofitU
                 super.performIntake(body, outboundFreight)
             }
         }
+
+        call.enqueue(callback)
     }
 }

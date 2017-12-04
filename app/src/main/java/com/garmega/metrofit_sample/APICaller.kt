@@ -17,44 +17,27 @@ import retrofit2.converter.gson.GsonConverterFactory
 object APICaller {
 
     val USER_MANAGEMENT_SERVICE: UserManagementService
-
     val WEATHER_SERVICE_MANAGER: WeatherServiceManager
 
     init {
-        USER_MANAGEMENT_SERVICE = UserManagementService(buildNewRetrofit(RetrofitUserManagementService.USER_MANAGEMENT_SERVICES_URL!!)
+        USER_MANAGEMENT_SERVICE = UserManagementService(buildNewRetrofit(RetrofitUserManagementService.Companion)
                 .create(RetrofitUserManagementService::class.java))
 
-        WEATHER_SERVICE_MANAGER = WeatherServiceManager(buildNewRetrofit(RetrofitWeatherService.WEATHER_SERVICES_URL!!)
+        WEATHER_SERVICE_MANAGER = WeatherServiceManager(buildNewRetrofit(RetrofitWeatherService.Companion)
                 .create(RetrofitWeatherService::class.java))
     }
 
-    // When attached to the initialization with Retrofit
-    // This intercepter will insert the following headers
-    private val intercepter = Interceptor { chain ->
-        val original = chain.request()
-
-        val request = original.newBuilder()
-                .header("x-api-key", "")
-                .header("Content-Type", "application/json")
-                .header("X-Amz-Date", "")
-                .method(original.method(), original.body())
-                .build()
-
-        chain.proceed(request)
-    }
-
-    private fun buildNewRetrofit(url: HttpUrl): Retrofit {
+    private fun buildNewRetrofit(initialization: RetrofitInitialization): Retrofit {
         // Takes the intercepter built in hermes and builds a HttpClient with it
         val httpClient = OkHttpClient.Builder()
-        httpClient.addInterceptor(intercepter)
+        httpClient.addInterceptor(initialization.INTERCEPTOR)
         val client = httpClient.build()
 
         // Init Retorfit
         return Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(initialization.URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
-
 }

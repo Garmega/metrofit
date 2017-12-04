@@ -55,6 +55,6 @@ public class JavaActivity extends AppCompatActivity {
             }
         };
 
-        UserManager.INSTANCE.getUser(this, notifier);
+        UserManager.INSTANCE.getUser("600", this, notifier);
     }
 }
