@@ -18,7 +18,7 @@ class WeatherServiceManager(private val retrofitWeatherService: RetrofitWeatherS
     /*
     This method handles model after conversion happens. This is where you should modify your local model
      */
-    fun getWeather(cityId: String, context: Context, notifier: UINotifier) {
+    fun getWeather(cityId: String, notifier: UINotifier) {
         val filter = IntentFilter("TEST")
 
         val getWeatherReceiver = object: ResponseReceiver(notifier) {
@@ -45,8 +45,8 @@ class WeatherServiceManager(private val retrofitWeatherService: RetrofitWeatherS
     /*
     This method handles calling and converting data into local objects. Do not modify local model here
      */
-    private fun getWeather(cityId: String, receiver: ResponseReceiver) {
-        val call = retrofitWeatherService.getWeather(cityId)
+    private fun getWeather(cityName: String, receiver: ResponseReceiver) {
+        val call = retrofitWeatherService.getWeather(cityName, "52999c99f1a294b470e1e57f2602a5e1")
 
         val callback = object: ResponseCallback<WeatherDataResponse>(receiver, "") {
             override fun performIntake(body: WeatherDataResponse?, outboundFreight: Map<String, Any>) {

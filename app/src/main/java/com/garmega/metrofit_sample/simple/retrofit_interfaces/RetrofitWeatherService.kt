@@ -1,5 +1,6 @@
 package com.garmega.metrofit_sample.simple.retrofit_interfaces
 
+import android.util.Log
 import com.garmega.metrofit_sample.RetrofitInitialization
 import com.garmega.metrofit_sample.simple.response_models.WeatherDataResponse
 import okhttp3.HttpUrl
@@ -7,6 +8,7 @@ import okhttp3.Interceptor
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * Created by Nick on 12/2/17.
@@ -19,9 +21,6 @@ interface RetrofitWeatherService {
             val original = chain.request()
 
             val request = original.newBuilder()
-                    .header("x-api-key", "")
-                    .header("Content-Type", "application/json")
-                    .header("X-Amz-Date", "")
                     .method(original.method(), original.body())
                     .build()
 
@@ -29,9 +28,11 @@ interface RetrofitWeatherService {
         }
 
         override val URL: HttpUrl?
-            get() = HttpUrl.parse("https://6rcmh8l5f0.execute-api.us-east-1.amazonaws.com/")
+            get() = HttpUrl.parse("https://api.openweathermap.org/data/2.5/")
     }
 
-    @GET("user/{cityId}")
-    fun getWeather(@Path("cityId") cityId: String): Call<WeatherDataResponse>
+    @GET("weather")
+    fun getWeather(
+            @Query("q") cityName: String,
+            @Query("APPID") key: String): Call<WeatherDataResponse>
 }

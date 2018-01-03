@@ -55,6 +55,7 @@ public class JavaActivity extends AppCompatActivity {
             }
         };
 
-        UserManager.INSTANCE.getUser("600", this, notifier);
+        APICaller.INSTANCE.getWEATHER_SERVICE_MANAGER().getWeather("SEATTLE", notifier);
+
     }
 }
