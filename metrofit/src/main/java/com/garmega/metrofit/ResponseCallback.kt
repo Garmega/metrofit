@@ -1,7 +1,5 @@
 package com.garmega.metrofit
 
-import android.content.Intent
-import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,14 +30,9 @@ TODO: Comment more stuff
  *
  * @param <T> Where T is any object type.
 </T> */
-abstract class ResponseCallback<T>(broadcastTag: String, private val debugTag: String) : Callback<T> {
-    private val broadcastIntent: Intent
+abstract class ResponseCallback<T>(private val receiver: ResponseReceiver, private val debugTag: String) : Callback<T> {
     private val result = APIResult()
     private val freight = HashMap<String, Any>()
-
-    init {
-        this.broadcastIntent = Intent(broadcastTag)
-    }
 
     //------------------------------------------------------------------
     //   Override Functions
@@ -117,11 +110,9 @@ abstract class ResponseCallback<T>(broadcastTag: String, private val debugTag: S
     //   Private Functions
     //------------------------------------------------------------------
 
-    private fun broadcastResult(call: Call<*>) {
+    private fun broadcastResult(call: Call<T>) {
         result.freight = freight
-        broadcastIntent.putExtra("result", result)
-        // Figure out how to broadcast out of within the context of a library
-//        LocalBroadcastManager.getInstance(TackApp.getInstance()).sendBroadcast(broadcastIntent)
+        receiver.onReceive(result)
     }
 
     //------------------------------------------------------------------

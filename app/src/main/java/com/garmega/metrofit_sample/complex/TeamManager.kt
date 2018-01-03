@@ -5,6 +5,7 @@ import android.content.IntentFilter
 import android.support.v4.content.LocalBroadcastManager
 import com.garmega.metrofit.APIReceiver
 import com.garmega.metrofit.APIResult
+import com.garmega.metrofit.ResponseReceiver
 import com.garmega.metrofit.UINotifier
 import com.garmega.metrofit_sample.APICaller
 
@@ -21,22 +22,15 @@ object TeamManager {
 
     fun getTeam(teamId: String, context: Context, notifier: UINotifier) {
         val filter = IntentFilter("TEST")
-        val getUserReceiver = object : APIReceiver(notifier) {
+        val getUserReceiver = object : ResponseReceiver(notifier) {
 
 
-            override fun onSuccessful(result: APIResult, context: Context) {
-                super.onSuccessful(result, context)
+            override fun onSuccessful(result: APIResult) {
+                super.onSuccessful(result)
                 val freight = result.freight
-
-            }
-
-            override fun onPowerDown() {
-                super.onPowerDown()
-                LocalBroadcastManager.getInstance(context).unregisterReceiver(this)
             }
         }
 
-        LocalBroadcastManager.getInstance(context).registerReceiver(getUserReceiver, filter)
-        APICaller.USER_MANAGEMENT_SERVICE.getTeam(teamId, "TEST")
+        APICaller.USER_MANAGEMENT_SERVICE.getTeam(teamId, getUserReceiver)
     }
 }
