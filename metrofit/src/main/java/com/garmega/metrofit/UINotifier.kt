@@ -7,9 +7,9 @@ package com.garmega.metrofit
 abstract class UINotifier {
     open fun onIncoming() {}
 
-    open fun onSuccessful() {}
+    open fun onSuccessful(result: APIResult) {}
 
-    open fun onUnsuccessful() {}
+    open fun onUnsuccessful(result: APIResult) {}
 
     open fun onIntakeFailure() {}
 

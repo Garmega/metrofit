@@ -13,9 +13,6 @@ import retrofit2.Response
  * Created by Nick on 12/2/17.
  *
  * TODO: Obfuscate and renew APIKey.
- * TODO: Display NO_TAG when no debug tag is provided
- * TODO: Enhance debugging logs with on/off. Per method and overall
- * TODO: Implement UI elements to respond to UINotifier.
  * TODO: Start processing and displaying received weather information.
  *
  * TODO: Cleanup global namespace by moving managers into APICaller.
@@ -54,7 +51,7 @@ class WeatherServiceManager(private val retrofitWeatherService: RetrofitWeatherS
     private fun getWeather(cityName: String, receiver: ResponseReceiver) {
         val call = retrofitWeatherService.getWeather(cityName, "52999c99f1a294b470e1e57f2602a5e1")
 
-        val callback = object: ResponseCallback<WeatherDataResponse>(receiver, true, "GET_WEATHER") {
+        val callback = object: ResponseCallback<WeatherDataResponse>(receiver, false, "GET_WEATHER") {
             override fun performIntake(body: WeatherDataResponse?, outboundFreight: Map<String, Any>) {
                 super.performIntake(body, outboundFreight)
             }

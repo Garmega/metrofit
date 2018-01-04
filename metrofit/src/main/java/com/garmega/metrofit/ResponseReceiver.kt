@@ -17,13 +17,13 @@ open class ResponseReceiver(private val notifier: UINotifier?) {
         if (result.status === APIResult.Status.SUCCESSFUL) {
 
             onSuccessful(result)
-            notifier?.let { notifier.onSuccessful() }
+            notifier?.let { notifier.onSuccessful(result) }
 
         } else if (result.status === APIResult.Status.UNSUCCESSFUL) {
 
             // NOTIFY DEVELOPER!@#@!$@$#%$#^%$&^%*&^(*
             onUnsuccessful(result)
-            notifier?.let { notifier.onUnsuccessful() }
+            notifier?.let { notifier.onUnsuccessful(result) }
 
         } else if (result.status === APIResult.Status.INTAKE_FAILURE) {
 

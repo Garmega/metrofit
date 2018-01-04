@@ -73,7 +73,7 @@ abstract class ResponseCallback<T>(
                 Log.e("APICALL", stackTrace)
             }
 
-        // Response was unsuccessful
+        // Response was unsuccessful; 400-500
         } else {
             result.status = APIResult.Status.UNSUCCESSFUL
             result.message = response.message()
@@ -90,15 +90,6 @@ abstract class ResponseCallback<T>(
 
         // Broadcast result back to original caller
         broadcastResult(call)
-    }
-
-    fun errorReport(exception: Exception, call: Call<T>, response: Response<T>) {
-        if (response.body() != null) {
-
-        } else if (call.request().body() != null) {
-
-        }
-
     }
 
     override fun onFailure(call: Call<T>, t: Throwable) {
