@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.garmega.metrofit.APIResult;
 import com.garmega.metrofit.UINotifier;
 import com.garmega.metrofit_sample.complex.UserManager;
 
@@ -57,13 +58,13 @@ public class JavaActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccessful() {
+            public void onSuccessful(APIResult result) {
                 Log.i(TAG, "UINotifier - onSuccessful");
                 messageBar.setText(R.string.get_weather_success);
             }
 
             @Override
-            public void onUnsuccessful() {
+            public void onUnsuccessful(APIResult result) {
                 Log.i(TAG, "UINotifier - onUnsuccessful");
                 messageBar.setText(R.string.get_weather_unsuccessful);
             }
