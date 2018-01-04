@@ -15,7 +15,7 @@ class UserManagementService(private val retrofitUserManagementService: RetrofitU
     fun getUser(userId: String, receiver: ResponseReceiver) {
         val call = retrofitUserManagementService.getUser(userId)
 
-        val callback = object: ResponseCallback<UserResponse>(receiver, "") {
+        val callback = object: ResponseCallback<UserResponse>(receiver) {
             override fun performIntake(body: UserResponse?, outboundFreight: Map<String, Any>) {
                 super.performIntake(body, outboundFreight)
             }
@@ -27,7 +27,7 @@ class UserManagementService(private val retrofitUserManagementService: RetrofitU
     fun getTeam(teamId: String, receiver: ResponseReceiver) {
         val call = retrofitUserManagementService.getTeam(teamId)
 
-        val callback = object: ResponseCallback<TeamResponse>(receiver,"") {
+        val callback = object: ResponseCallback<TeamResponse>(receiver) {
             override fun performIntake(body: TeamResponse?, outboundFreight: Map<String, Any>) {
                 super.performIntake(body, outboundFreight)
             }

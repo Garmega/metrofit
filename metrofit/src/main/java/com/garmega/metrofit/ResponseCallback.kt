@@ -30,7 +30,11 @@ TODO: Comment more stuff
  *
  * @param <T> Where T is any object type.
 </T> */
-abstract class ResponseCallback<T>(private val receiver: ResponseReceiver, private val debugTag: String) : Callback<T> {
+abstract class ResponseCallback<T>(
+        private val receiver: ResponseReceiver,
+        private val debugMode: Boolean = false,
+        private val debugTag: String = "NO_TAG") : Callback<T> {
+
     private val result = APIResult()
     private val freight = HashMap<String, Any>()
 
@@ -41,7 +45,8 @@ abstract class ResponseCallback<T>(private val receiver: ResponseReceiver, priva
     override fun onResponse(call: Call<T>, response: Response<T>) {
         result.httpStatusCode = response.code()
         freight.put("originalCall", call)
-        Log.i("APICALL", debugTag + " | Request : " + call.request().toString())
+
+        if (debugMode) Log.d("APICALL", debugTag + " | Request : " + call.request().toString())
 
         // Response is successful if it returned a status code of 200-300.
         if (response.isSuccessful) {
@@ -52,7 +57,7 @@ abstract class ResponseCallback<T>(private val receiver: ResponseReceiver, priva
 
                 // Caller 'performIntake' executed without any exceptions. Mark result as such.
                 result.status = APIResult.Status.SUCCESSFUL
-                Log.i("APICALL", debugTag + " | onResponse : INTAKE_SUCCESS")
+                if (debugMode) Log.d("APICALL", debugTag + " | onResponse : INTAKE_SUCCESS")
 
             } catch (e: Exception) {
                 // The caller did something illegal. Catch and package exception

@@ -2,4 +2,11 @@
     <string name="app_name">metrofit_sample</string>
 
     <string name="btn_lbl_api_test">API Test</string>
+
+    <string name="get_weather_no_city">Please enter a city name</string>
+
+    <string name="get_weather_fetching">Fetching Weather</string>
+    <string name="get_weather_success">Fetching Successful!</string>
+    <string name="get_weather_unsuccessful">Something went wrong</string>
+
 </resources>
