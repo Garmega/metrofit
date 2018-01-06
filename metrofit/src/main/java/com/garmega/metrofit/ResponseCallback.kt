@@ -11,8 +11,6 @@ import java.util.HashMap
  */
 
 /*
-TODO: Figure out how to broadcast of within the context of a library
-
 TODO: Clean up all references and interactions with APIResult.freight to be safer and more consistent
 
 TODO: Comment more stuff

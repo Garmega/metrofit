@@ -10,11 +10,12 @@ import com.garmega.metrofit_sample.APICaller
 
 // Singleton
 object TeamManager {
+
     fun getTeam(teamId: String, receiver: ResponseReceiver) {
         val childReceiver = object : ResponseReceiver() {
+
             override fun onSuccessful(result: APIResult) {
                 super.onSuccessful(result)
-                val freight = result.freight
             }
         }
 

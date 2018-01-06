@@ -54,13 +54,6 @@ public class JavaActivity extends AppCompatActivity {
 
         ResponseReceiver receiver = new ResponseReceiver() {
             @Override
-            public void onIncoming() {
-                super.onIncoming();
-
-                Log.i(TAG, "UINotifier - onIncoming");
-            }
-
-            @Override
             public void onSuccessful(@NotNull APIResult result) {
                 super.onSuccessful(result);
 
