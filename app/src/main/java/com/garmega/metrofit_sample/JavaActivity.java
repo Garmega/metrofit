@@ -11,8 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.garmega.metrofit.APIResult;
-import com.garmega.metrofit.UINotifier;
-import com.garmega.metrofit_sample.complex.UserManager;
+import com.garmega.metrofit.ResponseReceiver;
+
+import org.jetbrains.annotations.NotNull;
 
 public class JavaActivity extends AppCompatActivity {
     private final String TAG = "MAIN_ACTIVITY";
@@ -51,26 +52,34 @@ public class JavaActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         messageBar.setText(R.string.get_weather_fetching);
 
-        UINotifier notifier = new UINotifier() {
+        ResponseReceiver receiver = new ResponseReceiver() {
             @Override
             public void onIncoming() {
+                super.onIncoming();
+
                 Log.i(TAG, "UINotifier - onIncoming");
             }
 
             @Override
-            public void onSuccessful(APIResult result) {
+            public void onSuccessful(@NotNull APIResult result) {
+                super.onSuccessful(result);
+
                 Log.i(TAG, "UINotifier - onSuccessful");
                 messageBar.setText(R.string.get_weather_success);
             }
 
             @Override
-            public void onUnsuccessful(APIResult result) {
+            public void onUnsuccessful(@NotNull APIResult result) {
+                super.onUnsuccessful(result);
+
                 Log.i(TAG, "UINotifier - onUnsuccessful");
                 messageBar.setText(R.string.get_weather_unsuccessful);
             }
 
             @Override
-            public void onPowerDown() {
+            public void onDestroy() {
+                super.onDestroy();
+
                 Log.i(TAG, "UINotifier - onPowerDown");
 
                 btnAPITest.setEnabled(true);
@@ -78,7 +87,7 @@ public class JavaActivity extends AppCompatActivity {
             }
         };
 
-        APICaller.INSTANCE.getWEATHER_SERVICE_MANAGER().getWeather(edtTxtCity.getText().toString().trim(), notifier);
 
+        APICaller.INSTANCE.getWEATHER_SERVICE_MANAGER().getWeather(edtTxtCity.getText().toString().trim(), receiver);
     }
 }

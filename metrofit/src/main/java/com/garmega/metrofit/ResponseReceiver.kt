@@ -1,47 +1,52 @@
 package com.garmega.metrofit
 
-import android.content.Context
-import android.content.Intent
-
 /**
  * Created by Nick on 12/5/17.
+ *
+ * Standardized receiver object that handles our custom APIResult packaging.
+ * Overrides allow implementers to respond to specific cases of the APIResult status.
+ *
+ * This receiver can accept a child receiver of the same type to allow handling
+ * to the nth layer.
+ *
  */
 
-open class ResponseReceiver(private val notifier: UINotifier?) {
+open class ResponseReceiver {
+    private val TAG = "RESPONSE_RECEIVER"
+    private var childReceiver: ResponseReceiver? = null
 
-    fun onReceive(result: APIResult) {
+    fun receiveResponse(result: APIResult) {
 
         onIncoming()
-        notifier?.let { notifier.onIncoming() }
+        childReceiver?.let { childReceiver -> childReceiver.onIncoming() }
 
         if (result.status === APIResult.Status.SUCCESSFUL) {
 
             onSuccessful(result)
-            notifier?.let { notifier.onSuccessful(result) }
+            childReceiver?.let { childReceiver -> childReceiver.onSuccessful(result) }
 
         } else if (result.status === APIResult.Status.UNSUCCESSFUL) {
 
             // NOTIFY DEVELOPER!@#@!$@$#%$#^%$&^%*&^(*
             onUnsuccessful(result)
-            notifier?.let { notifier.onUnsuccessful(result) }
+            childReceiver?.let { childReceiver -> childReceiver.onUnsuccessful(result) }
 
         } else if (result.status === APIResult.Status.INTAKE_FAILURE) {
 
             // NOTIFY DEVELOPER!@#@!$@$#%$#^%$&^%*&^(*
             onIntakeFailure(result)
-            notifier?.let { notifier.onIntakeFailure() }
+            childReceiver?.let { childReceiver -> childReceiver.onIntakeFailure(result) }
 
         } else if (result.status === APIResult.Status.FAILED_TO_REACH_SERVER) {
 
             onFailedToReachServer(result)
-            notifier?.let { notifier.onFailedToReachServer() }
+            childReceiver?.let { childReceiver -> childReceiver.onFailedToReachServer(result) }
 
         }
 
-        onPowerDown()
-        notifier?.let { notifier.onPowerDown() }
+        onDestroy()
+        childReceiver?.let { childReceiver -> childReceiver.onDestroy() }
     }
-
 
     //------------------------------------------------------------------
     //   Handle Functions
@@ -83,5 +88,30 @@ open class ResponseReceiver(private val notifier: UINotifier?) {
     /**
      * Handle method to respond AFTER any any status specific case. THIS WILL ALWAYS BE CALLED.
      */
-    open fun onPowerDown() {}
+    open fun onDestroy() {}
+
+    //------------------------------------------------------------------
+    //   Child ResponseReceiver Functions
+    //------------------------------------------------------------------
+
+    /**
+     * Checks if this receiver has a child receiver attached to it
+     */
+    fun hasChildReceiver(): Boolean {
+        return this.childReceiver != null
+    }
+
+    /**
+     * Attempts to set the a child receiver to this receiver.
+     *
+     * Throws an IllegalStateException if this receiver already has a child.
+     * TODO: Probably should handle this more elegantly than just throwing an exception.
+     */
+    fun setChildReceiver(childReceiver: ResponseReceiver) {
+        if (this.childReceiver == null) {
+            this.childReceiver = childReceiver
+        } else {
+            throw IllegalStateException("This ResponseReceiver already has a child receiver")
+        }
+    }
 }

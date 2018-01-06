@@ -43,6 +43,7 @@ abstract class ResponseCallback<T>(
     //------------------------------------------------------------------
 
     override fun onResponse(call: Call<T>, response: Response<T>) {
+
         result.httpStatusCode = response.code()
         freight.put("originalCall", call)
 
@@ -108,7 +109,7 @@ abstract class ResponseCallback<T>(
 
     private fun broadcastResult(call: Call<T>) {
         result.freight = freight
-        receiver.onReceive(result)
+        receiver.receiveResponse(result)
     }
 
     //------------------------------------------------------------------
