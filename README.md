@@ -25,8 +25,9 @@ Retrofit does not provide a convenient way to communicate to all layers of an An
 
 1) Define a `ResponseReceiver`.
 
-	###### Kotlin:
-    ~~~
+###### Kotlin:
+
+~~~~
     val receiver = object : ResponseReceiver() {
         override fun onSuccessful(result: APIResult) {
             super.onSuccessful(result)
@@ -34,9 +35,9 @@ Retrofit does not provide a convenient way to communicate to all layers of an An
             // Display success/do more work
         }
     }
-	~~~
-	###### Java:
-    ~~~
+~~~~
+###### Java:
+~~~~
     ResponseReceiver receiver = new ResponseReceiver() {
         @Override
         public void onSuccessful(@NotNull APIResult result) {
@@ -45,13 +46,13 @@ Retrofit does not provide a convenient way to communicate to all layers of an An
             // Display success/do more work
         }
     };
-    ~~~
+~~~~
 
 
 2) Define a `ResponseCallback` for each unique Retrofit API call. Pass in your `ResponseReceiver`
 
 	###### Kotlin:
-	~~~
+	~~~~
     val callback = object: ResponseCallback<T>(receiver, false, "NEW_TAG") {
     	override fun performIntake(body: T?, outboundFreight: Map<String, Any>) {
             super.performIntake(body, outboundFreight)
@@ -61,7 +62,7 @@ Retrofit does not provide a convenient way to communicate to all layers of an An
             // outboundFreight will be available inside APIResult on the receiver end.
         }
     }
-    ~~~
+    ~~~~
     
     ###### Java:
     
