@@ -84,10 +84,11 @@ ResponseCallback callback = new ResponseCallback(receiver, false, "NEW_TAG") {
     
 
 3) Invoke a Retrofit call and instead pass in your newly defined `ResponseCallback<T>` instead of `Retrofit.Callback<T>`
-    ###### Kotlin & Java
-	~~~
-		call.enqueue(callback)
-	~~~ 
+	
+###### Kotlin & Java
+~~~~
+call.enqueue(callback)
+~~~~ 
 
 ---
 
