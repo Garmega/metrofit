@@ -9,6 +9,12 @@ package com.garmega.metrofit
  * This receiver can accept a child receiver of the same type to allow handling
  * to the nth layer.
  *
+ * TODO URGENT: Not sure if the receivers are chained correctly.
+ * If the parent is responsible of owning the child
+ * then as the chain gets longer, the 0th parent still needs to be referenced to be put
+ * into the final callback otherwise chaining doesn't happen. Perhaps relationship needs to be
+ * reverse? Investigate.
+ *
  */
 
 open class ResponseReceiver {

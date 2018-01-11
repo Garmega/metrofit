@@ -49,7 +49,7 @@ abstract class ResponseCallback<T>(
 
         // Response is successful if it returned a status code of 200-300.
         if (response.isSuccessful) {
-            // Give the caller a chance to process data with 'performIntake' hook
+            // Give the caller a chance to process dadta with 'performIntake' hook
             try {
                 val body = response.body()
                 performIntake(body, freight)
