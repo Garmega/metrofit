@@ -29,55 +29,55 @@ Retrofit does not provide a convenient way to communicate to all layers of an An
 
 ~~~~
     val receiver = object : ResponseReceiver() {
-        override fun onSuccessful(result: APIResult) {
-            super.onSuccessful(result)
+    override fun onSuccessful(result: APIResult) {
+        super.onSuccessful(result)
 
-            // Display success/do more work
-        }
+        // Display success/do more work
     }
+}
 ~~~~
 ###### Java:
 ~~~~
-    ResponseReceiver receiver = new ResponseReceiver() {
-        @Override
-        public void onSuccessful(@NotNull APIResult result) {
-            super.onSuccessful(result);
-            
-            // Display success/do more work
-        }
-    };
+ResponseReceiver receiver = new ResponseReceiver() {
+    @Override
+    public void onSuccessful(@NotNull APIResult result) {
+        super.onSuccessful(result);
+        
+        // Display success/do more work
+    }
+};
 ~~~~
 
 
 2) Define a `ResponseCallback` for each unique Retrofit API call. Pass in your `ResponseReceiver`
 
-	###### Kotlin:
-	~~~~
-    val callback = object: ResponseCallback<T>(receiver, false, "NEW_TAG") {
-    	override fun performIntake(body: T?, outboundFreight: Map<String, Any>) {
-            super.performIntake(body, outboundFreight)
+###### Kotlin:
+~~~~
+val callback = object: ResponseCallback<T>(receiver, false, "NEW_TAG") {
+	override fun performIntake(body: T?, outboundFreight: Map<String, Any>) {
+        super.performIntake(body, outboundFreight)
 
-            // Perform conversions to local types here.
-            // Add anything you want to outboundFreight.
-            // outboundFreight will be available inside APIResult on the receiver end.
-        }
+        // Perform conversions to local types here.
+        // Add anything you want to outboundFreight.
+        // outboundFreight will be available inside APIResult on the receiver end.
     }
-    ~~~~
-    
-    ###### Java:
-    
-    ~~~
-    ResponseCallback callback = new ResponseCallback(receiver, false, "NEW_TAG") {
-        @Override
-        public void performIntake(@Nullable Object body, @NotNull Map outboundFreight) {
-            super.performIntake(body, outboundFreight);
+}
+~~~~
 
-            // Perform conversions to local types here.
-            // Add anything you want to outboundFreight.
-            // outboundFreight will be available inside APIResult on the receiver end.
-        }
-    };
-    ~~~
+###### Java:
+
+~~~~
+ResponseCallback callback = new ResponseCallback(receiver, false, "NEW_TAG") {
+    @Override
+    public void performIntake(@Nullable Object body, @NotNull Map outboundFreight) {
+        super.performIntake(body, outboundFreight);
+
+        // Perform conversions to local types here.
+        // Add anything you want to outboundFreight.
+        // outboundFreight will be available inside APIResult on the receiver end.
+    }
+};
+~~~~
 
     
 
