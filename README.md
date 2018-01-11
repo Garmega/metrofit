@@ -1,7 +1,9 @@
 # Metrofit (Developer Preview)
 
-A cross-layer communication tool for Square's Retrofit. 
+A cross-layer communication tool for Square's Retrofit.
 
+
+**This document is draft and may not be completely accurate**
 
 ---
 
@@ -28,7 +30,7 @@ Retrofit does not provide a convenient way to communicate to all layers of an An
 ###### Kotlin:
 
 ~~~~
-    val receiver = object : ResponseReceiver() {
+val receiver = object : ResponseReceiver() {
     override fun onSuccessful(result: APIResult) {
         super.onSuccessful(result)
 
