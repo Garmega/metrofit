@@ -114,9 +114,9 @@ abstract class ResponseCallback<T>(
     //   Handle Functions
     //------------------------------------------------------------------
 
-    open fun performIntake(body: T?, outboundFreight: Map<String, Any>) {}
+    abstract fun performIntake(body: T?, outboundFreight: Map<String, Any>)
 
-    open fun onUnsuccessfulResponse(call: Call<T>, response: Response<T>) {}
+    abstract fun onUnsuccessfulResponse(call: Call<T>, response: Response<T>)
 
-    open fun onCallFailure(call: Call<T>, t: Throwable) {}
+    abstract fun onCallFailure(call: Call<T>, t: Throwable)
 }

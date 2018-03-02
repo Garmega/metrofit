@@ -5,6 +5,8 @@ import com.garmega.metrofit.ResponseReceiver
 import com.garmega.metrofit_sample.complex.response_models.TeamResponse
 import com.garmega.metrofit_sample.complex.response_models.UserResponse
 import com.garmega.metrofit_sample.complex.retrofit_interfaces.RetrofitUserManagementService
+import retrofit2.Call
+import retrofit2.Response
 
 /**
  * Created by Nick on 11/29/17.
@@ -17,7 +19,15 @@ class UserManagementService(private val retrofitUserManagementService: RetrofitU
 
         val callback = object: ResponseCallback<UserResponse>(receiver) {
             override fun performIntake(body: UserResponse?, outboundFreight: Map<String, Any>) {
-                super.performIntake(body, outboundFreight)
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onCallFailure(call: Call<UserResponse>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onUnsuccessfulResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         }
 
@@ -29,7 +39,15 @@ class UserManagementService(private val retrofitUserManagementService: RetrofitU
 
         val callback = object: ResponseCallback<TeamResponse>(receiver) {
             override fun performIntake(body: TeamResponse?, outboundFreight: Map<String, Any>) {
-                super.performIntake(body, outboundFreight)
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onCallFailure(call: Call<TeamResponse>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onUnsuccessfulResponse(call: Call<TeamResponse>, response: Response<TeamResponse>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         }
 

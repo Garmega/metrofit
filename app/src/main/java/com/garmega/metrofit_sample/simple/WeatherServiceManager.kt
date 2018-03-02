@@ -28,19 +28,15 @@ class WeatherServiceManager(private val retrofitWeatherService: RetrofitWeatherS
 
         val callback = object: ResponseCallback<WeatherDataResponse>(receiver, false, "GET_WEATHER") {
             override fun performIntake(body: WeatherDataResponse?, outboundFreight: Map<String, Any>) {
-                super.performIntake(body, outboundFreight)
-            }
-
-            override fun onUnsuccessfulResponse(call: Call<WeatherDataResponse>, response: Response<WeatherDataResponse>) {
-                super.onUnsuccessfulResponse(call, response)
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onCallFailure(call: Call<WeatherDataResponse>, t: Throwable) {
-                super.onCallFailure(call, t)
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
-            override fun onFailure(call: Call<WeatherDataResponse>, t: Throwable) {
-                super.onFailure(call, t)
+            override fun onUnsuccessfulResponse(call: Call<WeatherDataResponse>, response: Response<WeatherDataResponse>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         }
 
