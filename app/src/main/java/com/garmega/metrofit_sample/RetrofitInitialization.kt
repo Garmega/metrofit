@@ -1,5 +1,6 @@
 package com.garmega.metrofit_sample
 
+import junit.framework.Test
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import retrofit2.Retrofit
@@ -11,4 +12,8 @@ import retrofit2.Retrofit
 interface RetrofitInitialization {
     val URL: HttpUrl?
     val INTERCEPTOR: Interceptor
+
+
+    val TESTDATA: TestClass
+    data class TestClass(val testData: String = "SOME_STRING")
 }
